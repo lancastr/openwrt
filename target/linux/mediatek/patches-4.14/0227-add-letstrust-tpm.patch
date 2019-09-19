@@ -1,0 +1,23 @@
+--- a/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
++++ b/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
+@@ -503,9 +503,20 @@
+ };
+ 
+ &spi0 {
++	#address-cells = <1>;
++	#size-cells = <0>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&spi0_pins_a>;
+ 	status = "okay";
++
++	slb9670: slb9670@0{
++		compatible = "infineon,slb9670";
++		reg = <0>;	/* CS0 */
++		#address-cells = <1>;
++		#size-cells = <0>;
++		spi-max-frequency = <32000000>;
++		status = "okay";
++	};
+ };
+ 
+ &uart0 {
