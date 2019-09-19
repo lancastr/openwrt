@@ -1016,11 +1016,13 @@ $(eval $(call KernelPackage,tpm))
 define KernelPackage/tpm-tis
   SUBMENU:=$(OTHER_MENU)
   TITLE:=TPM TIS 1.2 Interface / TPM 2.0 FIFO Interface
-	DEPENDS:= @TARGET_x86 +kmod-tpm
-  KCONFIG:= CONFIG_TCG_TIS
+  DEPENDS:= +kmod-tpm
+  KCONFIG:= CONFIG_TCG_TIS \
+            CONFIG_TCG_TIS_SPI
   FILES:= \
 	$(LINUX_DIR)/drivers/char/tpm/tpm_tis.ko \
-	$(LINUX_DIR)/drivers/char/tpm/tpm_tis_core.ko
+	$(LINUX_DIR)/drivers/char/tpm/tpm_tis_core.ko \
+        $(LINUX_DIR)/drivers/char/tpm/tpm_tis_spi.ko
   AUTOLOAD:=$(call AutoLoad,20,tpm_tis,1)
 endef
 
